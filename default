@@ -1,0 +1,10 @@
+server {
+	listen 80 default_server;
+	root /var/www;
+
+	index index.php index.html index.htm default.htm default.html;
+
+	location / {
+		include /etc/nginx/php.conf;
+	}
+}
