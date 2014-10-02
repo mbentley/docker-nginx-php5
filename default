@@ -3,8 +3,5 @@ server {
 	root /var/www;
 
 	index index.php index.html index.htm default.htm default.html;
-
-	location / {
-		include /etc/nginx/php.conf;
-	}
+	include /etc/nginx/php.conf;
 }
