@@ -27,6 +27,6 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php5/fpm/php-fpm.conf
 
-VOLUME ["/var/log/nginx", "/var/www"]
+VOLUME ["/var/log/nginx","/var/www"]
 EXPOSE 80
 CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
