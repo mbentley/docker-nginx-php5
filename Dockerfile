@@ -5,7 +5,7 @@ RUN apt-get update
 
 ENV NGINX_VER 1.7.6
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential dnsutils libpcre3 libpcre3-dev libpcrecpp0 libssl-dev php5-curl php5-gd php5-fpm php5-imagick php5-mcrypt php5-memcached php5-mysql supervisor zlib1g-dev wget whois
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential dnsutils libpcre3 libpcre3-dev libpcrecpp0 libssl-dev php5-curl php5-gd php5-fpm php5-imagick php5-mcrypt php5-memcache php5-memcached php5-mysql supervisor zlib1g-dev wget whois
 
 RUN (wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz -O /tmp/nginx-${NGINX_VER}.tar.gz && \
 	cd /tmp && \
