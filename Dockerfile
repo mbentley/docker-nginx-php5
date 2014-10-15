@@ -26,6 +26,8 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php5/fpm/php-fpm.conf
+RUN sed -i 's/post_max_size = 8M/post_max_size = 16M/g' /etc/php5/fpm/php.ini
+RUN sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 16M/g' /etc/php5/fpm/php.ini
 
 EXPOSE 80
 CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
