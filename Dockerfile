@@ -1,11 +1,9 @@
 FROM debian:jessie
 MAINTAINER Matt Bentley <mbentley@mbentley.net>
-RUN (echo "deb http://http.debian.net/debian/ jessie main contrib non-free" > /etc/apt/sources.list && echo "deb http://http.debian.net/debian/ jessie-updates main contrib non-free" >> /etc/apt/sources.list && echo "deb http://security.debian.org/ jessie/updates main contrib non-free" >> /etc/apt/sources.list)
-RUN apt-get update
 
-ENV NGINX_VER 1.7.6
+ENV NGINX_VER 1.8.0
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential dnsutils imagemagick libpcre3 libpcre3-dev libpcrecpp0 libssl-dev php5-curl php5-gd php5-fpm php5-imagick php5-mcrypt php5-memcache php5-memcached php5-mysql ssmtp supervisor zlib1g-dev wget whois
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential dnsutils imagemagick libpcre3 libpcre3-dev libpcrecpp0 libssl-dev php5-curl php5-gd php5-fpm php5-imagick php5-mcrypt php5-memcache php5-memcached php5-mysql ssmtp supervisor zlib1g-dev wget whois
 
 RUN (wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz -O /tmp/nginx-${NGINX_VER}.tar.gz && \
 	cd /tmp && \
@@ -24,10 +22,10 @@ ADD php.conf /etc/nginx/php.conf
 ADD default /etc/nginx/sites-available/default
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php5/fpm/php-fpm.conf
-RUN sed -i 's/post_max_size = 8M/post_max_size = 16M/g' /etc/php5/fpm/php.ini
-RUN sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 16M/g' /etc/php5/fpm/php.ini
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default &&\
+  sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php5/fpm/php-fpm.conf &&\
+  sed -i 's/post_max_size = 8M/post_max_size = 16M/g' /etc/php5/fpm/php.ini &&\
+  sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 16M/g' /etc/php5/fpm/php.ini
 
-EXPOSE 80
+EXPOSE 80 443
 CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
