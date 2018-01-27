@@ -31,5 +31,5 @@ RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default &&
   sed -i 's/post_max_size = 8M/post_max_size = 16M/g' /etc/php5/fpm/php.ini &&\
   sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 16M/g' /etc/php5/fpm/php.ini
 
-EXPOSE 80 443
+EXPOSE 80
 CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
