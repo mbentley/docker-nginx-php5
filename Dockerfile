@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Matt Bentley <mbentley@mbentley.net>
 
-ENV NGINX_VER 1.14.1
+ENV NGINX_VER 1.14.2
 
 RUN apt-get update &&\
   apt-get install -y build-essential dnsutils imagemagick libpcre3 libpcre3-dev libpcrecpp0 libssl-dev php5-curl php5-gd php5-fpm php5-imagick php5-mcrypt php5-memcache php5-memcached php5-mysql ssmtp supervisor zlib1g-dev wget whois &&\
