@@ -1,8 +1,9 @@
-mbentley/nginx-php5
-===================
+# mbentley/nginx-php5
+
+**WARNING**: This image is based off of an outdated operating system that is no longer supported and this image is no longer being regularly built.
 
 docker image for nginx + php5-fpm
-based off of stackbrew/debian:jessie
+based off of debian:jessie
 
 To pull this image:
 `docker pull mbentley/nginx-php5`
