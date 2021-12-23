@@ -1,4 +1,5 @@
-FROM debian:jessie
+# rebased/repackaged base image that only updates existing packages
+FROM mbentley/debian:jessie
 MAINTAINER Matt Bentley <mbentley@mbentley.net>
 
 ENV NGINX_VER 1.16.1
